@@ -239,6 +239,7 @@ class CarController(object):
     if BLINDSPOTDEBUG:
       self.blindspot_poll_counter += 1
     if self.blindspot_poll_counter > 1000: # 10 seconds after start
+
       #if CS.left_blinker_on:
       self.blindspot_blink_counter_left += 1
       #print "debug Left Blinker on"
