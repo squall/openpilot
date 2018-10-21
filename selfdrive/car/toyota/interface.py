@@ -127,7 +127,7 @@ class CarInterface(object):
         ret.longitudinalKiV = [0.18, 0.12]
       else:
         ret.gasMaxV = [0.5]
-        ret.longitudinalKpV = [3.6, 2.4, 1.5
+        ret.longitudinalKpV = [3.6, 2.4, 1.5]
         ret.longitudinalKiV = [0.54, 0.36]
 
     elif candidate == CAR.COROLLA:
