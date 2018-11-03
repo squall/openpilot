@@ -4,6 +4,7 @@ import selfdrive.messaging as messaging
 from selfdrive.services import service_list
 from common.kalman.simple_kalman import KF1D
 import numpy as np
+from common.numpy_fast import interp
 from selfdrive.can.parser import CANParser, CANDefine
 from selfdrive.config import Conversions as CV
 from selfdrive.car.toyota.values import CAR, DBC, STEER_THRESHOLD
@@ -14,7 +15,7 @@ from selfdrive.car.modules.UIEV_module import UIEvents
 def gps_distance(gpsLat, gpsLon, gpsAlt, gpsAcc):
   A = np.array([(6371010+gpsAlt)*sin(radians(gpsLat-90))*cos(radians(gpsLon)),(6371010+gpsAlt)*sin(radians(gpsLat-90))*sin(radians(gpsLon)),(6371010+gpsAlt)*cos(radians(gpsLat-90))])
   #x y z alt altacc includeradius approachradius speedlimit
-  B = np.array([[-4190726.5,-723704.4,4744593.25,575.5,15.000001,22.000001,100.000001,25.000001],[-4182729.45,-730269.75,4750656.55,587.7,15.000001,22.000001,100.000001,25.000001]])
+  B = np.array([[-4190726.5,-723704.4,4744593.25,575.5,15.000001,22.000001,100.000001,25.000001],[-4182729.45,-730269.75,4750656.55,587.7,15.000001,22.000001,100.000001,25.000001],[-4182656.23190573,-728404.35947068,4750970.77416399,560.4,5.000001,25.000001,100.000001,25.000001],[-4182340.93735163,-728347.57108258,4751257.30835904,560.6,15.000001,23.000001,100.000001,25.000001],[1997559.7577528,4923507.37728524,3516097.79232965,341.001,150.000001,22.000001,100.000001,35.000001],[1999313.05346417,4923689.65187786,3514838.56252996,341.001,150.000001,22.000001,100.000001,35.000001],[1999253.66753953,  4922766.06552066,  3516116.35225406, 309.701,15.000001,22.000001,100.000001,35.000001]])
   dist = 999.000001
   #lat=48.128939
   #lon=9.797879048
@@ -113,14 +114,16 @@ def get_can_parser(CP):
 
 class CarState(object):
   def __init__(self, CP):
+    self.Angle = [0, 5, 10, 15,20,25,30,35,60,100,180,270,500]
+    self.Angle_Speed = [255,160,100,80,70,60,55,50,40,30,20,10,5]
     #labels for ALCA modes
     self.alcaLabels = ["MadMax","Normal","Wifey"]
     self.alcaMode = 0
     #if (CP.carFingerprint == CAR.MODELS):
     # ALCA PARAMS
     # max REAL delta angle for correction vs actuator
-    self.CL_MAX_ANGLE_DELTA_BP = [10., 44.]
-    self.CL_MAX_ANGLE_DELTA = [1.8, .3]
+    self.CL_MAX_ANGLE_DELTA_BP = [10., 32., 44.]#[10., 44.]
+    self.CL_MAX_ANGLE_DELTA = [2.0, 0.96, 0.4]
      # adjustment factor for merging steer angle to actuator; should be over 4; the higher the smoother
     self.CL_ADJUST_FACTOR_BP = [10., 44.]
     self.CL_ADJUST_FACTOR = [16. , 8.]
@@ -144,7 +147,7 @@ class CarState(object):
     # anything more means we are going to steep or not enough in a turn
     self.CL_MAX_ACTUATOR_DELTA = 2.
     self.CL_MIN_ACTUATOR_DELTA = 0. 
-    self.CL_CORRECTION_FACTOR = [1.1,1.1,1.1]
+    self.CL_CORRECTION_FACTOR = [1.3,1.2,1.2]
     self.CL_CORRECTION_FACTOR_BP = [10., 32., 44.]
      #duration after we cross the line until we release is a factor of speed
     self.CL_TIMEA_BP = [10., 32., 44.]
@@ -263,7 +266,8 @@ class CarState(object):
     v_ego_x = self.v_ego_kf.update(self.v_wheel)
     self.v_ego = float(v_ego_x[0])
     self.a_ego = float(v_ego_x[1])
-    self.standstill = not self.v_wheel > 0.001
+    #self.standstill = not self.v_wheel > 0.001
+    self.standstill = False
 
     self.angle_steers = cp.vl["STEER_ANGLE_SENSOR"]['STEER_ANGLE'] + cp.vl["STEER_ANGLE_SENSOR"]['STEER_FRACTION']
     self.angle_steers_rate = cp.vl["STEER_ANGLE_SENSOR"]['STEER_RATE']
@@ -336,9 +340,10 @@ class CarState(object):
 
     self.user_brake = 0
     if self.acc_slow_on:
-      self.v_cruise_pcm = cp.vl["PCM_CRUISE_2"]['SET_SPEED'] - 34.0
+      self.v_cruise_pcm = max(7, cp.vl["PCM_CRUISE_2"]['SET_SPEED'] - 34.0)
     else:
       self.v_cruise_pcm = cp.vl["PCM_CRUISE_2"]['SET_SPEED']
+    self.v_cruise_pcm = int(min(self.v_cruise_pcm, interp(self.angle_steers, self.Angle, self.Angle_Speed)))
     #print "distane"
     #print self.distance
     if self.distance < self.approachradius + self.includeradius:

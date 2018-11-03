@@ -39,7 +39,7 @@ _A_CRUISE_MAX_V_FOLLOWING = [1.6, 1.6, 1.2, .7, .3]
 _A_CRUISE_MAX_BP = [0.,  5., 10., 20., 40.]
 
 # Lookup table for turns
-_A_TOTAL_MAX_V = [1.5, 1.9, 3.2]
+_A_TOTAL_MAX_V = [2.0, 2.5, 3.2]
 _A_TOTAL_MAX_BP = [0., 20., 40.]
 
 _FCW_A_ACT_V = [-3., -2.]
@@ -63,8 +63,8 @@ def limit_accel_in_turns(v_ego, angle_steers, a_target, CP):
   """
 
   a_total_max = interp(v_ego, _A_TOTAL_MAX_BP, _A_TOTAL_MAX_V)
-  a_y = v_ego**2 * angle_steers * CV.DEG_TO_RAD / (CP.steerRatio * CP.wheelbase)
-  a_x_allowed = math.sqrt(max(a_total_max**2 - a_y**2, 0.))
+  a_y = v_ego**2 * abs(angle_steers) * CV.DEG_TO_RAD / (CP.steerRatio * CP.wheelbase)
+  a_x_allowed = a_total_max - a_y
 
   a_target[1] = min(a_target[1], a_x_allowed)
   return a_target
