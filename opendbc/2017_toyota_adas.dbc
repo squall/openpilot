@@ -1790,18 +1790,6 @@ BO_ 1063 VSC1S96: 8 CGW
  SG_ TRCCONFL : 9|1@0+ (1,0) [0|0] "" Vector__XXX
  SG_ TRCCONFR : 8|1@0+ (1,0) [0|0] "" Vector__XXX
 
-BO_ 544 VSC2F07: 4 CGW
- SG_ FSROT : 7|1@0+ (1,0) [0|0] "" Vector__XXX
- SG_ BRK2 : 4|1@0+ (1,0) [0|0] "" Vector__XXX
- SG_ BRK1 : 3|1@0+ (1,0) [0|0] "" Vector__XXX
- SG_ FCNG : 1|1@0+ (1,0) [0|0] "" Vector__XXX
- SG_ TSLP : 0|1@0+ (1,0) [0|0] "" Vector__XXX
- SG_ TRCACT : 15|1@0+ (1,0) [0|0] "" DS1,FCM
- SG_ ABSSLP : 14|1@0+ (1,0) [0|0] "" Vector__XXX
- SG_ VDMACT : 13|1@0+ (1,0) [0|0] "" FCM
- SG_ DAC_CND : 9|2@0+ (1,0) [0|0] "" Vector__XXX
- SG_ VSC2F07S : 31|8@0+ (1,0) [0|0] "" DS1,FCM
-
 BO_ 36 Kinematics: 8 CGW
  SG_ YRS11S : 7|1@0+ (1,0) [0|0] "" DS1,FCM,MAV
  SG_ YRS14S : 6|1@0+ (1,0) [0|0] "" DS1,FCM,MAV
