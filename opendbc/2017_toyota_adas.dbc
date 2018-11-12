@@ -1757,11 +1757,6 @@ BO_ 562 VSC1S14: 6 CGW
  SG_ VWPSUMRL : 39|8@0+ (1,0) [0|0] "" MAV
  SG_ VSC14SUM : 47|8@0+ (1,0) [0|0] "" MAV
 
-BO_ 552 Accelerometer: 4 CGW
- SG_ ICBACT : 7|1@0+ (1,0) [0|0] "" DS1
- SG_ DVS0PCS : 6|15@0- (0.001,0) [0|0] "m/s^2" DS1
- SG_ SM228 : 31|8@0+ (1,0) [0|0] "" DS1
-
 BO_ 1168 VSC1S92: 1 CGW
  SG_ C_DCMOD1 : 7|1@0+ (1,0) [0|0] "" Vector__XXX
  SG_ C_DCMOD2 : 6|3@0+ (1,0) [0|0] "" Vector__XXX
