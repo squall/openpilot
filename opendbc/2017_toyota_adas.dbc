@@ -1790,16 +1790,6 @@ BO_ 1063 VSC1S96: 8 CGW
  SG_ TRCCONFL : 9|1@0+ (1,0) [0|0] "" Vector__XXX
  SG_ TRCCONFR : 8|1@0+ (1,0) [0|0] "" Vector__XXX
 
-BO_ 545 VSC2F05: 5 CGW
- SG_ TQER : 7|16@0- (0.03125,0) [0|0] "Nm" Vector__XXX
- SG_ REQC : 23|1@0+ (1,0) [0|0] "" Vector__XXX
- SG_ REQ2 : 22|1@0+ (1,0) [0|0] "" Vector__XXX
- SG_ REQ1 : 21|1@0+ (1,0) [0|0] "" Vector__XXX
- SG_ AIDWI : 20|1@0+ (1,0) [0|0] "" Vector__XXX
- SG_ RTD : 19|4@0+ (1,0) [0|0] "" Vector__XXX
- SG_ LOMUSFT : 31|1@0+ (1,0) [0|0] "" Vector__XXX
- SG_ VSC2F05S : 39|8@0+ (1,0) [0|0] "" Vector__XXX
-
 BO_ 544 VSC2F07: 4 CGW
  SG_ FSROT : 7|1@0+ (1,0) [0|0] "" Vector__XXX
  SG_ BRK2 : 4|1@0+ (1,0) [0|0] "" Vector__XXX
