@@ -160,7 +160,7 @@ FINGERPRINTS = {
 STEER_THRESHOLD = 100
 
 DBC = {
-  CAR.RAV4H: dbc_dict('toyota_rav4_hybrid_2017_pt_generated', '2017_toyota_adas.dbc'), #toyota_prius_2017_adas
+  CAR.RAV4H: dbc_dict('toyota_rav4_hybrid_2017_pt_generated', 'toyota_prius_2017_adas'),
   CAR.RAV4: dbc_dict('toyota_rav4_2017_pt_generated', 'toyota_prius_2017_adas'),
   CAR.PRIUS: dbc_dict('toyota_prius_2017_pt_generated', 'toyota_prius_2017_adas'),
   CAR.COROLLA: dbc_dict('toyota_corolla_2017_pt_generated', 'toyota_prius_2017_adas'),
