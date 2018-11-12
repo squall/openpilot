@@ -274,7 +274,7 @@ BO_ 559 TRACK_B_15: 6 XXX
  SG_ REL_ACCEL : 15|7@0- (1,0) [-64|63] "" XXX
  SG_ SCORE : 23|8@0+ (1,0) [0|100] "" XXX
  SG_ CHECKSUM : 47|8@0+ (1,0) [0|255] "" XXX
- 
+
 BO_ 1196 ABG1D50: 8 CGW
  SG_ DRABG01 : 7|8@0+ (1,0) [0|0] "" Vector__XXX
  SG_ DRABG02 : 15|8@0+ (1,0) [0|0] "" Vector__XXX
@@ -1696,24 +1696,6 @@ BO_ 426 VSC1F02: 6 CGW
  SG_ VXRLIGS : 23|1@0+ (1,0) [0|0] "" BSR,DS1,FCM,MAV
  SG_ VXRLHDS : 22|1@0+ (1,0) [0|0] "" FCM,KSS,MAV,SCS
  SG_ VSCF02SM : 47|8@0+ (1,0) [0|0] "" AFS,DS1,FCM,MAV
-
-BO_ 550 Brake_module: 8 CGW
- SG_ VSCF01FG : 7|2@0+ (1,0) [0|0] "" Vector__XXX
- SG_ AHCURQ : 4|1@0+ (1,0) [0|0] "" Vector__XXX
- SG_ PMCF : 3|1@0+ (1,0) [0|0] "" DS1
- SG_ PMCS : 2|1@0+ (1,0) [0|0] "" DS1
- SG_ PMC : 1|10@0+ (0.02,0) [0|0] "Mpa" DS1
- SG_ ECOEN : 23|1@0+ (1,0) [0|0] "" Vector__XXX
- SG_ CCS : 22|1@0+ (1,0) [0|0] "" DS1
- SG_ FBA : 21|1@0+ (1,0) [0|0] "" DS1
- SG_ TRBRKSYS : 20|1@0+ (1,0) [0|0] "" Vector__XXX
- SG_ TS : 38|1@0+ (1,0) [0|0] "" KSS,SCS
- SG_ WSTP : 37|1@0+ (1,0) [0|0] "" DS1,KSS,SCS
- SG_ VSCACT : 36|1@0+ (1,0) [0|0] "" DS1,FCM
- SG_ BAEX : 35|1@0+ (1,0) [0|0] "" Vector__XXX
- SG_ TEM : 34|3@0+ (1,0) [0|0] "" SCS
- SG_ FSTP : 60|1@0+ (1,0) [0|0] "" DS1
- SG_ ABSACT : 59|1@0+ (1,0) [0|0] "" DS1,FCM,MAV
 
 BO_ 180 Speed : 8 CGW
  SG_ SP1P : 39|6@0+ (1,0) [0|0] "" DS1,FCM
